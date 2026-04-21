@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support &amp; FAQ — My Folder</title>
+  <meta name="description" content="Support, FAQ and guides for My Folder — the private offline document manager for iPhone and iPad." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink:       #0d1117;
+      --soft:      #4a5568;
+      --muted:     #8492a6;
+      --border:    rgba(0,0,0,0.08);
+      --blue:      #2563eb;
+      --blue-dk:   #1e3a8a;
+      --blue-lt:   #dbeafe;
+      --teal:      #0d9488;
+      --teal-lt:   #ccfbf1;
+      --violet:    #7c3aed;
+      --violet-lt: #ede9fe;
+      --amber:     #d97706;
+      --amber-lt:  #fef3c7;
+      --rose:      #e11d48;
+      --green:     #16a34a;
+      --green-lt:  #dcfce7;
+      --surface:   #ffffff;
+      --bg:        #f7f8fc;
+      --radius:    16px;
+      --shadow:    0 4px 24px rgba(0,0,0,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink); line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ───────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+    }
+    .nav-inner {
+      max-width: 1000px; margin: 0 auto;
+      display: flex; align-items: center; height: 64px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--ink); text-decoration: none; margin-right: auto;
+    }
+    .nav-logo-icon {
+      width: 34px; height: 34px; border-radius: 9px;
+      background: linear-gradient(135deg, var(--blue-dk), var(--blue));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .nav-links { display: flex; gap: 4px; }
+    .nav-links a {
+      text-decoration: none; font-size: 0.87rem; font-weight: 500;
+      color: var(--soft); padding: 8px 14px; border-radius: 8px;
+      transition: all 0.15s;
+    }
+    .nav-links a:hover { background: var(--blue-lt); color: var(--blue); }
+    .nav-links a.active { color: var(--blue); font-weight: 600; }
+    @media (max-width: 520px) { .nav-links { display: none; } }
+
+    /* ── HERO ──────────────────────────────────────────────────── */
+    .hero {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 55%, #0891b2 100%);
+      padding: 72px 32px 56px; text-align: center;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 70% at 85% 20%, rgba(124,58,237,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 50% at 10% 85%, rgba(8,145,178,0.25) 0%, transparent 50%);
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.22);
+      color: rgba(255,255,255,0.9);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 100px; margin-bottom: 22px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 900; color: #fff; line-height: 1.1;
+      margin-bottom: 16px; letter-spacing: -0.02em;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, #a5f3fc, #c4b5fd);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub { color: rgba(255,255,255,0.68); font-size: 1rem; margin-bottom: 28px; }
+
+    /* search bar */
+    .search-wrap {
+      position: relative; max-width: 480px; margin: 0 auto;
+    }
+    .search-wrap input {
+      width: 100%; padding: 14px 20px 14px 48px;
+      border: none; border-radius: 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      background: rgba(255,255,255,0.92);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      outline: none; color: var(--ink);
+    }
+    .search-wrap input::placeholder { color: var(--muted); }
+    .search-icon {
+      position: absolute; left: 16px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted); pointer-events: none; font-size: 1rem;
+    }
+
+    /* ── LAYOUT ────────────────────────────────────────────────── */
+    .page-wrap {
+      max-width: 1000px; margin: 0 auto;
+      padding: 56px 32px 80px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 40px; align-items: start;
+    }
+    @media (max-width: 700px) {
+      .page-wrap { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+    }
+
+    /* ── SIDEBAR ───────────────────────────────────────────────── */
+    .sidebar {
+      position: sticky; top: 84px;
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .sidebar-title {
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 12px;
+      padding-left: 8px;
+    }
+    .sidebar a {
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none; color: var(--soft);
+      font-size: 0.83rem; padding: 7px 8px;
+      border-radius: 8px; transition: all 0.15s;
+    }
+    .sidebar a:hover { background: var(--blue-lt); color: var(--blue); }
+    .sidebar a .s-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── MAIN CONTENT ──────────────────────────────────────────── */
+    .main { display: flex; flex-direction: column; gap: 32px; }
+
+    /* guide card */
+    .guide-section {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: fadeUp 0.5s ease both;
+    }
+    .guide-header {
+      display: flex; align-items: center; gap: 14px;
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .guide-header-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .g-blue   .guide-header-icon { background: var(--blue-lt); }
+    .g-teal   .guide-header-icon { background: var(--teal-lt); }
+    .g-violet .guide-header-icon { background: var(--violet-lt); }
+    .g-amber  .guide-header-icon { background: var(--amber-lt); }
+    .g-green  .guide-header-icon { background: var(--green-lt); }
+
+    .guide-header-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 700;
+    }
+    .g-blue   .guide-header-text h3 { color: var(--blue); }
+    .g-teal   .guide-header-text h3 { color: var(--teal); }
+    .g-violet .guide-header-text h3 { color: var(--violet); }
+    .g-amber  .guide-header-text h3 { color: var(--amber); }
+    .g-green  .guide-header-text h3 { color: var(--green); }
+
+    .guide-header-text p { font-size: 0.8rem; color: var(--muted); margin: 2px 0 0; }
+
+    /* accordion items */
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      width: 100%; text-align: left;
+      background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px; gap: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem; font-weight: 600; color: var(--ink);
+      transition: background 0.15s;
+    }
+    .faq-q:hover { background: #f8faff; }
+    .faq-chevron {
+      font-size: 0.9rem; color: var(--muted); flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-a {
+      display: none; padding: 0 24px 18px;
+      font-size: 0.87rem; color: var(--soft); line-height: 1.65;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* step list inside answers */
+    .step-list { margin: 8px 0 4px; padding-left: 0; list-style: none; }
+    .step-list li {
+      display: flex; gap: 10px; padding: 5px 0;
+      font-size: 0.85rem; color: var(--soft);
+    }
+    .step-list li::before {
+      content: attr(data-n);
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--blue-lt); color: var(--blue);
+      font-size: 0.72rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+
+    .inline-code {
+      font-family: 'DM Mono', monospace; font-size: 0.8rem;
+      background: #f1f5f9; padding: 2px 6px; border-radius: 4px;
+      color: var(--violet);
+    }
+
+    /* ── CONTACT STRIP ─────────────────────────────────────────── */
+    .contact-strip {
+      background: linear-gradient(135deg, var(--blue-dk) 0%, var(--blue) 50%, var(--teal) 100%);
+      border-radius: var(--radius);
+      padding: 36px 28px; color: #fff; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .contact-strip::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 20%, rgba(124,58,237,0.22) 0%, transparent 55%);
+    }
+    .contact-strip-inner { position: relative; z-index: 1; }
+    .contact-strip h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; margin-bottom: 8px;
+    }
+    .contact-strip p { color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 20px; }
+    .cs-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .cs-btn {
+      text-decoration: none; font-size: 0.88rem; font-weight: 600;
+      padding: 11px 22px; border-radius: 10px;
+      transition: opacity 0.15s;
+    }
+    .cs-btn:hover { opacity: 0.88; }
+    .cs-btn.solid { background: #fff; color: var(--blue-dk); }
+    .cs-btn.ghost {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.22);
+      color: #fff;
+    }
+
+    /* ── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      background: #0f172a; padding: 40px 32px; text-align: center;
+    }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .footer-links a {
+      text-decoration: none; color: rgba(255,255,255,0.4);
+      font-size: 0.82rem; padding: 5px 12px; border-radius: 6px; transition: color 0.15s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .guide-section { animation-delay: calc(var(--i,0) * 0.07s); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV ───────────────────────────────────────────────────────── -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">📁</div>
+        My Folder
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="support.html" class="active">Support</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO ──────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">🛟 Support &amp; FAQ</div>
+      <h1>How can we <span>help?</span></h1>
+      <p class="hero-sub">Find answers, guides, and troubleshooting tips for My Folder.</p>
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search questions…" oninput="filterFAQ(this.value)" />
+      </div>
+    </div>
+  </section>
+
+  <!-- BODY ──────────────────────────────────────────────────────── -->
+  <div class="page-wrap">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-title">Topics</div>
+      <a href="#getting-started"><span class="s-dot" style="background:var(--blue)"></span>Getting Started</a>
+      <a href="#importing"><span class="s-dot" style="background:var(--teal)"></span>Importing Files</a>
+      <a href="#pdf-tools"><span class="s-dot" style="background:var(--violet)"></span>PDF Tools</a>
+      <a href="#security"><span class="s-dot" style="background:var(--amber)"></span>Security &amp; Passwords</a>
+      <a href="#troubleshooting"><span class="s-dot" style="background:var(--rose)"></span>Troubleshooting</a>
+      <a href="#contact-strip" style="margin-top:12px; color:var(--blue); font-weight:600;">✉️ Contact Us</a>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <!-- GETTING STARTED -->
+      <div class="guide-section g-blue" id="getting-started" style="--i:0">
+        <div class="guide-header">
+          <div class="guide-header-icon">🚀</div>
+          <div class="guide-header-text">
+            <h3>Getting Started</h3>
+            <p>Set up My Folder and your first files</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            How do I create my first folder?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>On the home screen, tap the <strong>blue + button</strong> in the bottom-right corner. Enter a name for your folder and tap Create. You can also pick a colour label to help identify it at a glance.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            How do I add documents to a folder?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>Open any folder, then use the three buttons at the bottom:</p>
+            <ul class="step-list">
+              <li data-n="1"><strong>Scan</strong> — use your iPhone camera to capture a physical document and save it as a PDF</li>
+              <li data-n="2"><strong>Import</strong> — choose <em>Files App</em> to browse iCloud/local storage, or <em>Photos</em> to pick images from your library</li>
+              <li data-n="3"><strong>Create</strong> — create a blank RTF or text document, or a new subfolder</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            Can I create subfolders inside a folder?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>Yes. Open any folder, tap <strong>Create</strong> in the bottom bar, then tap <strong>Folder</strong>. The new folder will be nested inside the current one and shows up in the Subfolders section at the top of the file list.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            How do I rename or delete a folder?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>On the home screen, <strong>swipe left</strong> on any folder to reveal the Rename and Delete buttons. You can also <strong>long-press</strong> a folder to get a context menu with the same options.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            What file types does My Folder support?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>My Folder can store and preview a wide range of file types, including:</p>
+            <p style="margin-top:8px">
+              <span class="inline-code">PDF</span>
+              <span class="inline-code">JPG / PNG / HEIC</span>
+              <span class="inline-code">DOC / DOCX</span>
+              <span class="inline-code">XLS / XLSX</span>
+              <span class="inline-code">PPT / PPTX</span>
+              <span class="inline-code">TXT / RTF</span>
+              <span class="inline-code">MP4 / MOV</span>
+              <span class="inline-code">MP3 / M4A</span>
+              <span class="inline-code">ZIP</span>
+            </p>
+            <p style="margin-top:8px">Preview is powered by Apple's QuickLook, so any format QuickLook supports will open correctly.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- IMPORTING -->
+      <div class="guide-section g-teal" id="importing" style="--i:1">
+        <div class="guide-header">
+          <div class="guide-header-icon">📥</div>
+          <div class="guide-header-text">
+            <h3>Importing Files</h3>
+            <p>Getting documents into My Folder</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            How do I save a file from Safari, Mail, or another app?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>In any app, tap the <strong>Share</strong> button (the box with an arrow), scroll through the share sheet, and tap <strong>"Save to My Folder"</strong>. Choose your destination folder and tap Save. The file is imported immediately.</p>
+            <p style="margin-top:8px">If you don't see "Save to My Folder", scroll to the end of the actions row and tap <strong>More</strong>, then find and enable it.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            Can I import multiple files at once?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>Yes. When sharing multiple files from the Files app or Photos, all selected files will be queued in the import sheet. You can choose a destination folder and save them all together in one tap.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            How do I move a document to a different folder?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p><strong>Long-press</strong> any document to open the context menu, then tap <strong>Move to Folder</strong>. A folder picker will appear — tap the destination folder and the file will be moved.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            How do I scan a physical document?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <ul class="step-list">
+              <li data-n="1">Open a folder and tap the blue <strong>Scan</strong> button in the bottom bar.</li>
+              <li data-n="2">Point your camera at the document. My Folder will auto-detect the edges.</li>
+              <li data-n="3">Tap the shutter button to capture, or let it auto-capture.</li>
+              <li data-n="4">Review the scan, retake if needed, then tap <strong>Keep Scan</strong>.</li>
+              <li data-n="5">Tap <strong>Save</strong> — the document is saved as a PDF in the current folder.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- PDF TOOLS -->
+      <div class="guide-section g-violet" id="pdf-tools" style="--i:2">
+        <div class="guide-header">
+          <div class="guide-header-icon">🛠️</div>
+          <div class="guide-header-text">
+            <h3>PDF Tools</h3>
+            <p>Merge, split, sign, annotate and more</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            How do I access PDF tools for a file?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p><strong>Long-press</strong> any PDF in your folder list. In the context menu, tap <strong>PDF Tools</strong> to see the submenu with all available tools: Merge, Split, OCR, Add/Remove Password, and Compress.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            How do I merge multiple PDFs into one?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>Long-press any PDF → <strong>PDF Tools</strong> → <strong>Merge with…</strong>. The merge tool will open and show all PDFs in the current folder. Select the files you want to combine, arrange them in order, then tap <strong>Merge</strong>.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            How do I sign a PDF?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>Open the PDF by tapping it. In the <strong>bottom toolbar</strong>, tap the <strong>✍️ Signature</strong> button (pencil with a stroke). Draw your signature on the canvas and tap <strong>Done</strong>. Your signature is placed at the bottom-centre of the last page and saved permanently into the PDF.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            How do I annotate a PDF?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>Open any PDF, then tap the <strong>✏️ Annotate</strong> button in the bottom toolbar. A PencilKit canvas overlays the document — use the floating tool picker to choose a pen, highlighter, or eraser. Tap <strong>Save</strong> to flatten annotations into the PDF.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            How do I extract text from a scanned PDF (OCR)?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>Long-press the PDF → <strong>PDF Tools</strong> → <strong>OCR (Extract Text)</strong>. The app will analyse each page and extract readable text, saving it as a new <span class="inline-code">.txt</span> file in the same folder.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            How do I add or remove a password from a PDF?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>Long-press the PDF → <strong>PDF Tools</strong> → <strong>Add/Remove PDF Password</strong>. Enter a password to encrypt the PDF using AES-256, or enter the current password to decrypt and remove protection. This modifies the PDF file itself using the native PDF standard.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECURITY -->
+      <div class="guide-section g-amber" id="security" style="--i:3">
+        <div class="guide-header">
+          <div class="guide-header-icon">🔐</div>
+          <div class="guide-header-text">
+            <h3>Security &amp; Passwords</h3>
+            <p>Protecting your files</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            How does the app lock work?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>My Folder locks automatically whenever you leave the app or the screen turns off. When you return, it uses <strong>Face ID</strong> or <strong>Touch ID</strong> to authenticate. If biometrics fail, it falls back to your device passcode. This is handled entirely by iOS — My Folder never sees your biometric data.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            How do I set a password on a specific document?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>Long-press any document → <strong>Set Password</strong>. Enter a password (minimum 4 characters) and confirm it. The password is stored as a PBKDF2-SHA256 hash — your plain-text password is never saved. To remove it, long-press again → <strong>Remove Password</strong>.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            I forgot my document password. Can I recover it?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>Unfortunately <strong>no</strong>. My Folder stores only the hashed version of your password, not the original. If you forget it, the document cannot be unlocked. This is intentional — it means even the developer cannot access your files.</p>
+            <p style="margin-top:8px; color: var(--amber);">💡 Tip: use a password manager to store document passwords safely.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            Is my data backed up to iCloud?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>My Folder does not use iCloud Drive or any cloud service directly. However, your files may be included in your standard <strong>iPhone iCloud Backup</strong> if you have iCloud Backup enabled in iOS Settings → [Your Name] → iCloud → iCloud Backup. This backup is private to you and managed entirely by Apple.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TROUBLESHOOTING -->
+      <div class="guide-section g-green" id="troubleshooting" style="--i:4">
+        <div class="guide-header">
+          <div class="guide-header-icon">🔧</div>
+          <div class="guide-header-text">
+            <h3>Troubleshooting</h3>
+            <p>Fixing common issues</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            A file shows a warning triangle — what does it mean?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>An orange triangle (⚠️) on a document means the file can no longer be found on disk. This can happen if the app's data was partially deleted. To resolve it, delete the entry and reimport the file. Your folders and other documents are unaffected.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            "Save to My Folder" doesn't appear in the share sheet.
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <ul class="step-list">
+              <li data-n="1">In the share sheet, scroll the actions row to the right and tap <strong>More</strong>.</li>
+              <li data-n="2">Find <strong>Save to My Folder</strong> and toggle it on.</li>
+              <li data-n="3">If it still doesn't appear, try force-quitting My Folder and reopening it, then try sharing again.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            The app won't unlock with Face ID / Touch ID.
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>If Face ID or Touch ID fails, the app will prompt for your <strong>device passcode</strong> as a fallback — this is standard iOS behaviour. If biometrics are not working at all, check <strong>iOS Settings → Face ID &amp; Passcode</strong> and ensure My Folder is listed under "Use Face ID For: Other Apps".</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            A PDF won't open — it shows an error.
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>If the PDF is password-protected, you'll be prompted to enter the password first. If it shows a preview error, the file may be corrupted or use a non-standard PDF format. Try opening it in the Files app as a test. If it works there but not in My Folder, please contact us with the file details.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggle(this)">
+            How do I completely reset the app?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-a">
+            <p>The quickest way to reset everything is to <strong>delete the app</strong> from your home screen and reinstall it from the App Store. Deleting My Folder removes all files, folders, and settings permanently — there is no external backup unless you have iCloud Backup enabled on your device.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT STRIP -->
+      <div class="contact-strip" id="contact-strip">
+        <div class="contact-strip-inner">
+          <h3>Still need help?</h3>
+          <p>Can't find what you're looking for? We're happy to help — drop us a message.</p>
+          <div class="cs-btns">
+            <a href="contact.html" class="cs-btn solid">✉️ Contact Us</a>
+            <a href="privacy.html" class="cs-btn ghost">🔒 Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- FOOTER ──────────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">© 2026 Balwinder Singh · My Folder iOS App · <code style="font-family:'DM Mono',monospace;background:rgba(255,255,255,0.07);padding:2px 6px;border-radius:4px;color:rgba(255,255,255,0.4)">com.BJ.MyFolder</code></p>
+  </footer>
+
+  <script>
+    function toggle(btn) {
+      const item = btn.closest('.faq-item');
+      item.classList.toggle('open');
+    }
+
+    function filterFAQ(query) {
+      const q = query.toLowerCase().trim();
+      document.querySelectorAll('.faq-item').forEach(item => {
+        const text = item.innerText.toLowerCase();
+        item.style.display = (!q || text.includes(q)) ? '' : 'none';
+        if (q) item.classList.add('open');
+        else   item.classList.remove('open');
+      });
+    }
+  </script>
+</body>
+</html>
